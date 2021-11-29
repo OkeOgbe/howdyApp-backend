@@ -1,4 +1,3 @@
-/*
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const validator = require('validator');
@@ -9,6 +8,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please tell us your name!'],
   },
+  userName: {
+    type: String,
+    required: [true, 'Please provide a username'],
+    unique: true,
+  },
   email: {
     type: String,
     required: [true, 'Please provide your email'],
@@ -18,7 +22,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: 'deafault.jpg',
+    default: 'default.jpg',
   },
   role: {
     type: String,
@@ -115,4 +119,3 @@ userSchema.methods.createPasswordResetToken = function () {
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-*/
