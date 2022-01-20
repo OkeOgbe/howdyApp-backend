@@ -5,6 +5,7 @@ const authController = require('../controllers/authController');
 const router = express.Router();
 
 router.post('/signup', authController.signup);
+router.post('/login', authController.login);
 
 router.param('id', (req, res, next, val) => {
   console.log(`User id is ${val}`);
@@ -13,7 +14,7 @@ router.param('id', (req, res, next, val) => {
 
 router
   .route('/')
-  .get(userController.getAllUsers)
+  .get(authController.protect, userController.getAllUsers)
   .post(userController.createUser);
 
 router
